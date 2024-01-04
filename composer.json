@@ -1,0 +1,27 @@
+{
+    "name": "riverstone/product-label",
+    "version": "1.0.0",
+    "description": "Transform your online store with our Product Label extension, a powerful tool for creating eye-catching labels seamlessly integrated across your site",
+    "type": "magento2-module",
+    "minimum-stability": "stable",
+    "require": {
+        "magento/framework": "102.*|103.*"
+    },
+    "authors": [
+        {
+            "name": "Riverstone Technology Unlimited",
+            "email": "support@riverstonetech.com",
+            "homepage": "https://www.riverstonetech.com",
+            "role": "Technical Support"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Riverstone\\ProductLabel\\": ""
+        }
+    }
+}

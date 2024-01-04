@@ -19,7 +19,7 @@ use Magento\Framework\App\Action\Action;
 $productCollection = $block->getLoadedProductCollection();
 /** @var \Magento\Catalog\Helper\Output $helper */
 $helper = $block->getData('outputHelper');
-$labelHelper = $this->helper(Riverstone\ProductLabel\Helper\LabelHelper::class);
+$labelHelper = $block->getViewModel();
 $moduleStatus = $labelHelper->getModuleEnable();
 ?>
 <?php if (!$productCollection->count()): ?>

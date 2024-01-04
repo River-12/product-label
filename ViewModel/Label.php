@@ -1,47 +1,52 @@
 <?php
 
-namespace Riverstone\ProductLabel\Helper;
+namespace Riverstone\ProductLabel\ViewModel;
 
-use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\StoreManagerInterface;
 use Riverstone\ProductLabel\Model\ConditionData;
 use Riverstone\ProductLabel\Model\ProductLabels;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class LabelHelper extends AbstractHelper
+class Label implements ArgumentInterface
 {
     public const MODULE_ENABLE = 'riverstone_product_label/general/enable';
     public const POSITION = 'riverstone_product_label/general/align';
     /**
      * @var ConditionData
      */
-    private ConditionData $conditionData;
+    protected ConditionData $conditionData;
     /**
      * @var ProductLabels
      */
-    private ProductLabels $productLabels;
+    protected ProductLabels $productLabels;
     /**
      * @var StoreManagerInterface
      */
-    private StoreManagerInterface $storeManager;
+    protected StoreManagerInterface $storeManager;
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected ScopeConfigInterface $scopeConfig;
 
     /**
-     * @param Context $context
      * @param ConditionData $conditionData
      * @param ProductLabels $productLabels
      * @param StoreManagerInterface $storeManager
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        Context               $context,
         ConditionData         $conditionData,
         ProductLabels         $productLabels,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        ScopeConfigInterface $scopeConfig
     ) {
-        parent::__construct($context);
         $this->conditionData = $conditionData;
         $this->productLabels = $productLabels;
         $this->storeManager = $storeManager;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**

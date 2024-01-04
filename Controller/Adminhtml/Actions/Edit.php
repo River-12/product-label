@@ -17,7 +17,15 @@ class Edit extends Action
     /**
      * @var Context
      */
-    private Context $context;
+    protected Context $context;
+    /**
+     * @var ProductLabels
+     */
+    protected ProductLabels $labelsFactory;
+    /**
+     * @var Registry
+     */
+    protected Registry $registry;
 
     /**
      * @param Context $context

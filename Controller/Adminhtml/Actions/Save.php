@@ -15,7 +15,7 @@ class Save extends Action
     /**
      * @var ProductLabelsFactory
      */
-    private ProductLabelsFactory $labelsFactory;
+    protected ProductLabelsFactory $labelsFactory;
 
     /**
      * @param Context $context

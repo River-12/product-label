@@ -12,7 +12,16 @@ class DataProvider extends AbstractDataProvider
     /**
      * @var RequestInterface
      */
-    private RequestInterface $request;
+    protected RequestInterface $request;
+    /**
+     * @var ProductLabels
+     */
+    protected ProductLabels $productLabels;
+
+    /**
+     * @var mixed
+     */
+    protected $loadedData;
 
     /**
      * @param string $name

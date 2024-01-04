@@ -19,36 +19,19 @@ class AddLabel extends Action
      */
     public const ADMIN_RESOURCE = 'Riverstone_ProductLabel::manage';
     /**
-     * @var Registry
-     */
-    private Registry $coreRegistry;
-    /**
-     * @var Model
-     */
-    private Model $model;
-    /**
      * @var ForwardFactory
      */
-    private ForwardFactory $forwardFactory;
+    protected ForwardFactory $forwardFactory;
 
     /**
      * @param Context $context
-     * @param PageFactory $resultPageFactory
-     * @param Registry $coreRegistry
-     * @param Model $model
      * @param ForwardFactory $forwardFactory
      */
     public function __construct(
         Context        $context,
-        PageFactory    $resultPageFactory,
-        Registry       $coreRegistry,
-        Model          $model,
         ForwardFactory $forwardFactory
     ) {
         parent::__construct($context);
-        $this->_resultPageFactory = $resultPageFactory;
-        $this->coreRegistry = $coreRegistry;
-        $this->model = $model;
         $this->forwardFactory = $forwardFactory;
     }
 

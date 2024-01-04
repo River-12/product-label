@@ -12,6 +12,10 @@ use Magento\Framework\View\Result\PageFactory;
 class Index extends Action
 {
     public const ADMIN_RESOURCE = 'Riverstone_ProductLabel::manage';
+    /**
+     * @var PageFactory
+     */
+    protected PageFactory $pageFactory;
 
     /**
      * @param Context $context
@@ -20,7 +24,7 @@ class Index extends Action
     public function __construct(Context $context, PageFactory $resultPageFactory)
     {
         parent::__construct($context);
-        $this->_resultPageFactory = $resultPageFactory;
+        $this->pageFactory = $resultPageFactory;
     }
 
     /**
@@ -30,7 +34,7 @@ class Index extends Action
      */
     public function execute()
     {
-        $resultPage = $this->_resultPageFactory->create();
+        $resultPage = $this->pageFactory->create();
         $resultPage->setActiveMenu('Riverstone_ProductLabel::manage');
         $resultPage->getConfig()->getTitle()->prepend(__('Riverstone Product label'));
         return $resultPage;

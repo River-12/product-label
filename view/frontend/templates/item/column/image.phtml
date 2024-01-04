@@ -1,7 +1,7 @@
 <?php
 $item = $block->getItem();
 $_product = $item->getProduct();
-$labelHelper = $this->helper(Riverstone\ProductLabel\Helper\LabelHelper::class);
+$labelHelper = $block->getViewModel();
 $moduleStatus = $labelHelper->getModuleEnable();
 if ($moduleStatus) {
     $labelIds = $labelHelper->getRuleCondition($_product);

@@ -1,0 +1,51 @@
+<?php
+$item = $block->getItem();
+$_product = $item->getProduct();
+$labelHelper = $this->helper(Riverstone\ProductLabel\Helper\LabelHelper::class);
+$moduleStatus = $labelHelper->getModuleEnable();
+if ($moduleStatus) {
+    $labelIds = $labelHelper->getRuleCondition($_product);
+    $labelId = array_slice($labelIds, 0, 1);
+    $labelType = $labelHelper->getLabelSelect($labelId);
+    if (!empty($labelType)) {
+        $labelPosition = $labelHelper->getLabelPosition($labelId);
+        if ($labelType == 'text') {
+            $labelName = $labelHelper->getLabelText($labelId);
+            $labelColor = $labelHelper->getLabelTextColor($labelId);
+            $labelBgColor = $labelHelper->getLabelBackgroundColor($labelId);
+            $labelShape = $labelHelper->getLabelShape($labelId);
+            if ($labelName && $labelShape) { ?>
+                <span class='river-product-label'
+                <?= !empty($labelColor) ? 'data-color=' . /* @noEscape */
+                    $labelColor : ''; ?> <?= !empty($labelBgColor) ? 'data-background-color=' . /* @noEscape */
+                    $labelBgColor : ''; ?> <?= !empty($labelShape) ? 'data-shape=' . /* @noEscape */
+                    $labelShape : '' ?> <?= !empty($labelPosition) ? 'data-position=' . /* @noEscape */
+                    $labelPosition : '' ?> >
+                    <?= $block->escapeHtml($labelName); ?>
+                </span>
+            <?php }
+        } elseif ($labelType == 'image') {
+            $labelImage = $labelHelper->getLabelImage($labelId);
+            if ($labelImage) { ?>
+                <div class='river-label-image' <?= !empty($labelPosition) ? 'data-position=' . /* @noEscape */
+                    $labelPosition : '' ?> >
+                    <img src="<?= /* @noEscape */
+                    $labelImage; ?>">
+                </div>
+            <?php }
+        }
+    }
+}
+?>
+<a class="product-item-photo" tabindex="-1" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+   title="<?= $block->escapeHtmlAttr($product->getName()) ?>">
+    <?= $block->getImage($block->getProductForThumbnail($item), 'wishlist_thumbnail')->toHtml() ?>
+</a>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Design":{}
+                }
+            }
+
+</script>

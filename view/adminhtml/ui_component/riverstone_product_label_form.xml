@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                riverstone_product_label_form.riverstone_product_label_form_data_source
+            </item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Riverstone\ProductLabel\Block\Adminhtml\Actions\Save"/>
+            <button name="reset" class="Riverstone\ProductLabel\Block\Adminhtml\Actions\Reset"/>
+            <button name="delete" class="Riverstone\ProductLabel\Block\Adminhtml\Actions\Delete"/>
+            <button name="back" class="Riverstone\ProductLabel\Block\Adminhtml\Actions\Back"/>
+        </buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+        <deps>
+            <dep>riverstone_product_label_form.riverstone_product_label_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="riverstone_product_label_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Riverstone\ProductLabel\Ui\DataProvider" name="riverstone_product_label_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General</item>
+            </item>
+        </argument>
+
+        <!-- This field represents form id and is hidden -->
+        <field name="id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">id</item>
+                    <item name="source" xsi:type="string">label_id</item>
+                </item>
+            </argument>
+        </field>
+
+        <!-- This field has data type 'text' and standard 'input' form element and looks like input -->
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">current_label</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">ruleinformation</item>
+                    <item name="dataScope" xsi:type="string">store_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="customer_group_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Customer\Ui\Component\Listing\Column\Group\Options
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">ruleinformation</item>
+                    <item name="dataScope" xsi:type="string">customer_group_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">From Date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">ruleinformation</item>
+                    <item name="dataScope" xsi:type="string">from_date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">To Date</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">ruleinformation</item>
+                    <item name="dataScope" xsi:type="string">to_date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Priority</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="condition">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <container name="conditions_serialized">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Riverstone\ProductLabel\Block\Adminhtml\Label\Tab\Conditions
+                </argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="design">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Label Design</item>
+            </item>
+        </argument>
+
+        <field name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Riverstone\ProductLabel\Model\Config\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Label Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">ruleinformation</item>
+                    <item name="dataScope" xsi:type="string">product_label_select</item>
+                    <item name="default" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Riverstone_ProductLabel/js/form/type</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="label_text">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+        </field>
+        <field name="background_color" sortOrder="10" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Background Color</label>
+                <componentType>colorPicker</componentType>
+                <placeholder translate="true">No Color</placeholder>
+                <validation>
+                    <rule name="validate-color" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>background_color</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-medium">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field name="text_color" sortOrder="10" formElement="colorPicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Text Color</label>
+                <componentType>colorPicker</componentType>
+                <placeholder translate="true">No Color</placeholder>
+                <validation>
+                    <rule name="validate-color" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>text_color</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-medium-text">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <colorPicker>
+                    <settings>
+                        <colorPickerMode>full</colorPickerMode>
+                        <colorFormat>hex</colorFormat>
+                    </settings>
+                </colorPicker>
+            </formElements>
+        </field>
+        <field formElement="imageUploader" name="image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">current_label</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Label Image</label>
+                <componentType>imageUploader</componentType>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>true</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="river_product_label/image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>Riverstone_ProductLabel/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="label_shape">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Riverstone\ProductLabel\Model\Config\Shape</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Label Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">current_label</item>
+                    <item name="dataScope" xsi:type="string">label_shape</item>
+                    <item name="default" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Riverstone_ProductLabel/js/form/type</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                riverstone_product_label_listing.riverstone_product_label_listing_data_source
+            </item>
+            <item name="deps" xsi:type="string">
+                riverstone_product_label_listing.riverstone_product_label_listing_data_source
+            </item>
+        </item>
+        <item name="spinner" xsi:type="string">riverstone_product_label_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add label</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/actions/addlabel</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="riverstone_product_label_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">label_id</param>
+            </storageConfig>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="riverstone_product_label_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="riverstone_product_label_columns">
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="sortOrder" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="label_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Id</label>
+            </settings>
+        </column>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">name</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+            </settings>
+
+        </column>
+        <column name="enable">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Riverstone\ProductLabel\Model\Config\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">enable</item>
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="product_label_select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">product_label_select</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Type</label>
+            </settings>
+        </column>
+        <column name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">from_date</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">From date</label>
+            </settings>
+
+        </column>
+        <column name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">to_date</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">To date</label>
+            </settings>
+
+        </column>
+
+        <column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">80</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">created_at</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+        <column name="store_view" class="Riverstone\ProductLabel\Model\Config\Stores">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">store_view</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+            <!-- Define the cell renderer here -->
+            <settings>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            </settings>
+            <!-- end renderer -->
+        </column>
+        <column name="customer_group" class="Riverstone\ProductLabel\Ui\Listing\CustomerGroup">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">customer_group</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+            <settings>
+                <filter>select</filter>
+                <label translate="true">Customer Group</label>
+            </settings>
+
+        </column>
+        <actionsColumn name="actions" class="Riverstone\ProductLabel\Ui\Component\Action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">label_id</item>
+                    </item>
+                </item>
+                <item name="sortOrder" xsi:type="number">2000</item>
+            </argument>
+        </actionsColumn>
+    </columns>
+
+</listing>

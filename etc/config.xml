@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <riverstone_product_label>
+            <general>
+                <enable>1</enable>
+                <no_of_label>1</no_of_label>
+                <use_in_catalog>1</use_in_catalog>
+                <use_in_advanced_search>1</use_in_advanced_search>
+                <use_in_search>1</use_in_search>
+                <use_in_product>1</use_in_product>
+                <use_in_wishlist>1</use_in_wishlist>
+            </general>
+        </riverstone_product_label>
+    </default>
+</config>

@@ -1,0 +1,97 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block Gallery
+ */
+
+use Magento\Catalog\Block\Product\View\Gallery;
+
+$labelHelper = $this->helper(Riverstone\ProductLabel\Helper\LabelHelper::class);
+$product = $block->getProduct();
+$moduleStatus = $labelHelper->getModuleEnable();
+if ($moduleStatus) {
+    $labelIds = $labelHelper->getRuleCondition($product);
+    $labelId = array_slice($labelIds, 0, 1);
+    $labelType = $labelHelper->getLabelSelect($labelId);
+    if (!empty($labelType)) {
+        $labelPosition = $labelHelper->getLabelPosition($labelId);
+        if ($labelType == 'text') {
+            $labelName = $labelHelper->getLabelText($labelId);
+            $labelColor = $labelHelper->getLabelTextColor($labelId);
+            $labelBgColor = $labelHelper->getLabelBackgroundColor($labelId);
+            $labelShape = $labelHelper->getLabelShape($labelId);
+            if ($labelName && $labelShape) { ?>
+                <span class='river-product-label'
+                <?= !empty($labelColor) ? 'data-color=' . /* @noEscape */
+                    $labelColor : ''; ?> <?= !empty($labelBgColor) ? 'data-background-color=' . /* @noEscape */
+                    $labelBgColor : ''; ?> <?= !empty($labelShape) ? 'data-shape=' . /* @noEscape */
+                    $labelShape : '' ?> <?= !empty($labelPosition) ? 'data-position=' . /* @noEscape */
+                    $labelPosition : '' ?>>
+                    <?= $block->escapeHtml($labelName); ?>
+                </span>
+            <?php }
+        } elseif ($labelType == 'image') {
+            $labelImage = $labelHelper->getLabelImage($labelId);
+            if ($labelImage) { ?>
+                <div class='river-label-image' <?= !empty($labelPosition) ? 'data-position=' . /* @noEscape */
+                    $labelPosition : '' ?>>
+                    <img src="<?= /* @noEscape */
+                    $labelImage; ?>">
+                </div>
+            <?php }
+        }
+    }
+}
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ? $mainImage->getData('medium_image_url') : $helper->getDefaultPlaceholderUrl('image');
+
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+            alt="main product photo"
+            class="gallery-placeholder__image"
+            src="<?= /* @noEscape */
+            $mainImageData ?>"
+    />
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */
+                $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */
+                $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */
+                $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */
+                $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                 "breakpoints": <?= /* @noEscape */
+                    $block->getBreakpoints() ?>
+    }
+},
+        "*": {
+            "Design":{}
+                }
+            }
+
+</script>
+

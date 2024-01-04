@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Riverstone_Core::menu" title="Riverstone Infotech" module="Riverstone_ProductLabel" sortOrder="50" resource="Riverstone_ProductLabel::configuration"/>
+        <add id="Riverstone_ProductLabel::manage" title="Product label" module="Riverstone_ProductLabel" sortOrder="20"
+             parent="Riverstone_Core::menu" action="river_product_label/grid/index"
+             resource="Riverstone_ProductLabel::manage" dependsOnConfig="riverstone_product_label/general/enable"/>
+    </menu>
+</config>

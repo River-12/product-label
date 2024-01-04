@@ -1,0 +1,27 @@
+{
+    "riverstone_product_labels": {
+        "column": {
+            "label_id": true,
+            "name": true,
+            "enable": true,
+            "store_view": true,
+            "customer_group": true,
+            "from_date": true,
+            "to_date": true,
+            "priority": true,
+            "image": true,
+            "label_name": true,
+            "text_color": true,
+            "background_color": true,
+            "shape": true,
+            "position": true,
+            "product_label_select": true,
+            "conditions_serialized": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

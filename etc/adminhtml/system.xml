@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="riverstoneinfotech" translate="label" sortOrder="100" class="riverstoneinfotech-logo">
+            <label>Riverstone</label>
+        </tab>
+        <section id="riverstone_product_label" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product label</label>
+            <tab>riverstoneinfotech</tab>
+            <resource>Riverstone_ProductLabel::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="align" translate="label" type="select" sortOrder="2" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Label alignment</label>
+                    <source_model>Riverstone\ProductLabel\Model\Config\PositionOptions</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="use_in_catalog" translate="label" type="select" sortOrder="11" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Use in Category</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="use_in_search" translate="label" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Use in Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="use_in_product" translate="label" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Use in Product page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="use_in_advanced_search" translate="label" type="select" sortOrder="13" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Use in Advance search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="use_in_wishlist" translate="label" type="select" sortOrder="13" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Use in Wishlist</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

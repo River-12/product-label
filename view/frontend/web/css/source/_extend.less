@@ -1,0 +1,89 @@
+.products-grid {
+    .product-item-info {
+        position: relative;
+        .river-label-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60px;
+            z-index: 2;
+        }
+        .river-product-label {
+            padding: 10px 20px;
+            right: 0;
+            top: 0;
+        }
+        .river-product-label.rectangle {
+            position: absolute;
+            z-index: 2;
+        }
+
+        .river-product-label.oval {
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 2;
+        }
+        .river-product-label.horizontal {
+            padding: 10px 10px;
+            top: 10px;
+            word-wrap: break-word;
+            writing-mode: vertical-rl;
+        }
+        .river-label-image.horizontal {
+            position: absolute;
+            top: 30px;
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.product.media {
+    position: relative;
+    .river-product-label {
+        padding: 10px 20px;
+        right: 0;
+        top: 0;
+        word-wrap: break-word;
+    }
+
+    .river-label-image {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 80px;
+        z-index: 1;
+    }
+
+    .river-product-label.horizontal {
+        padding: 10px 20px;
+        right: 0;
+        top: 60px;
+        transform: rotate(90deg);
+        word-wrap: break-word;
+        z-index: 1;
+    }
+
+    .river-product-label.rectangle {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .river-product-label.oval {
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .river-label-image.horizontal {
+        position: absolute;
+        right: 0;
+        top: 40px;
+        transform: rotate(90deg);
+        width: 80px;
+        z-index: 1;
+    }
+}
